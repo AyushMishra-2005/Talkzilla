@@ -9,6 +9,7 @@ import userGetAllUsers from '../../context/userGetAllUsers.jsx';
 import useConversation from '../../stateManage/useConversation.js';
 import axios from 'axios';
 import GroupIcon from '@mui/icons-material/Group';
+import server from '../../environment.js';
 
 const LeftSidebar = ({getSelectedUsers}) => {
   const { selectedConversation, selectedUsersId, setSelectedUsersId } = useConversation();
@@ -27,7 +28,7 @@ const LeftSidebar = ({getSelectedUsers}) => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5002/user/getUsers",
+        `${server}/user/getUsers`,
         { username: search },
         { withCredentials: true }
       );

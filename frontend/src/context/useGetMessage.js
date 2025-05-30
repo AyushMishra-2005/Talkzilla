@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import useConversation from '../stateManage/useConversation.js';
+import server from '../environment.js';
 
 function useGetMessage() {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ function useGetMessage() {
       setLoading(true);
       try {
         const res = await axios.get(
-          `http://localhost:5002/message/get/${selectedConversation._id}`,
+          `${server}/message/get/${selectedConversation._id}`,
           { withCredentials: true }
         );
         setMessages(res.data.messages || []);

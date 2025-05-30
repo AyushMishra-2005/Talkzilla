@@ -7,6 +7,7 @@ import axios, { all } from 'axios';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthProvider.jsx';
 import { useNavigate } from 'react-router-dom';
+import server from '../../environment.js';
 
 
 const RightContent = () => {
@@ -37,7 +38,7 @@ const RightContent = () => {
     if (file) {
       try {
         const { data } = await axios.get(
-          "http://localhost:5002/getImage",
+          `${server}/getImage`,
           { withCredentials: true }
         );
 
@@ -85,7 +86,7 @@ const RightContent = () => {
     };
 
     axios.post(
-      "http://localhost:5002/group/createGroup", 
+      `${server}/group/createGroup`, 
       {
         groupData,
         userInfo

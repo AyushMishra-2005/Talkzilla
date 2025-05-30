@@ -5,6 +5,7 @@ import { useSocketContext } from '../context/socketContext.jsx';
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios';
 import useConversation from '../stateManage/useConversation.js';
+import server from '../environment.js';
 
 function GlobalCallNotification() {
   const { callData, showNotification, answerCall, endCall} = useCallContext();
@@ -16,7 +17,7 @@ function GlobalCallNotification() {
     const uid = Math.floor(Math.random() * 100000);
     try {
       const { data } = await axios.post(
-        `http://localhost:5002/user/generate-token`,
+        `${server}/user/generate-token`,
         {
           channelName: callData.roomId,
           uid

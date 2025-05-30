@@ -3,6 +3,7 @@ import {io} from "socket.io-client";
 import { useAuth } from "./AuthProvider";
 import useConversation from "../stateManage/useConversation";
 import toast from 'react-hot-toast'
+import server from "../environment.js";
 
 const socketContext = createContext();
 
@@ -36,7 +37,7 @@ export const SocketProvider = ({ children }) => {
     }
 
     const initializeSocket = () => {
-      const newSocket = io("http://localhost:5002", {
+      const newSocket = io(`${server}`, {
         query: {
           userId: authUser.user._id,
         },

@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import toast from 'react-hot-toast';
 import { useAuth } from '../../context/AuthProvider';
-
+import server from '../../environment.js';
 
 const style = {
   position: 'absolute',
@@ -59,7 +59,7 @@ export default function DeleteForm({ open, onClose }) {
       const { email, password } = values;
 
       const { data } = await axios.post(
-        "http://localhost:5002/user/confirmDeleteAccount",
+        `${server}/user/confirmDeleteAccount`,
         { email, password },
         { withCredentials: true }
       );
@@ -75,7 +75,7 @@ export default function DeleteForm({ open, onClose }) {
           }
 
           const deletUser = await axios.post(
-            "http://localhost:5002/user/delete",
+            `${server}/user/delete`,
             userInfo,
             { withCredentials: true }
           )

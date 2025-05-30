@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { useSocketContext } from './socketContext';
+import server from '../environment.js';
 
 function useGetRequests() {
 
@@ -12,7 +13,7 @@ function useGetRequests() {
     const findUsers = async () => {
       try {
         const { data } = await axios.post(
-          "http://localhost:5002/requests/getRequests",
+          `${server}/requests/getRequests`,
           {},
           { withCredentials: true }
         );

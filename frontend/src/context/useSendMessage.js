@@ -2,6 +2,7 @@ import React from 'react'
 import useConversation from '../stateManage/useConversation'
 import {useState} from 'react'
 import axios from 'axios'
+import server from '../environment.js'
 
 function useSendMessage() {
 
@@ -13,7 +14,7 @@ function useSendMessage() {
     if(selectedConversation && selectedConversation._id){
       try{
         const res = await axios.post(
-        `http://localhost:5002/message/send/${selectedConversation._id}`,
+        `${server}/message/send/${selectedConversation._id}`,
         {
           message,
           attachment

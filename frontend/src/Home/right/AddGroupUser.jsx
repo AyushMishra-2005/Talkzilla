@@ -11,6 +11,7 @@ import Lottie from 'lottie-react';
 import animationData from '../../assets/loading.json';
 import GroupAddIcon from '@mui/icons-material/GroupAdd';
 import userGetAllUsers from '../../context/userGetAllUsers.jsx';
+import server from '../../environment.js';
 
 const style = {
   position: 'absolute',
@@ -66,7 +67,7 @@ export default function NestedModal() {
     setLoading(true);
     try {
       const response = await axios.post(
-        "http://localhost:5002/group/addGroupMembers",
+        `${server}/group/addGroupMembers`,
         {
           groupId: selectedConversation._id,
           membersId: users

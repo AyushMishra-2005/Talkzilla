@@ -12,6 +12,7 @@ import toast from 'react-hot-toast';
 import { useSocketContext } from '../../context/socketContext';
 import { useAuth } from '../../context/AuthProvider';
 import { transformImage } from '../../lib/features';
+import server from '../../environment.js';
 
 const style = {
   position: 'absolute',
@@ -39,7 +40,7 @@ export default function BasicModal({ open, onClose }) {
   const handleSendRequest = async (userId) => {
     try {
       const { data } = await axios.post(
-        "http://localhost:5002/requests/sendFriendRequest",
+        `${server}/requests/sendFriendRequest`,
         { receiverId: userId },
         { withCredentials: true }
       );
@@ -79,7 +80,7 @@ export default function BasicModal({ open, onClose }) {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5002/user/findUsers",
+        `${server}/user/findUsers`,
         { username: searchTerm },
         { withCredentials: true }
       );

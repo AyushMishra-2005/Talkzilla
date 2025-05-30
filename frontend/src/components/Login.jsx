@@ -5,6 +5,7 @@ import axios from 'axios';
 import { useAuth } from '../context/AuthProvider';
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import server from '../environment.js';
 
 function Login() {
 
@@ -34,7 +35,7 @@ function Login() {
       confirmpassword : data.confirmpassword,
     };
 
-    await axios.post("http://localhost:5002/user/login", userInfo, {
+    await axios.post(`${server}/user/login`, userInfo, {
       withCredentials : true,
     })
       .then((response) => {

@@ -9,6 +9,7 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import Lottie from 'lottie-react';
 import animationData from '../assets/loading.json'
 import { useState } from "react";
+import server from "../environment.js";
 
 function Signup() {
 
@@ -43,7 +44,7 @@ function Signup() {
     if (file) {
       try {
         const { data } = await axios.get(
-          "http://localhost:5002/getImage",
+          `${server}/getImage`,
           {},
           { withCredentials: true }
         );
@@ -88,7 +89,7 @@ function Signup() {
 
     console.log(userInfo);
 
-    await axios.post("http://localhost:5002/user/signup", userInfo, {
+    await axios.post(`${server}/user/signup`, userInfo, {
       withCredentials: true,
     })
       .then((response) => {

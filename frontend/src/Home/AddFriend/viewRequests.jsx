@@ -16,6 +16,7 @@ import { useAuth } from '../../context/AuthProvider.jsx';
 import { useSocketContext } from '../../context/socketContext.jsx';
 import useConversation from '../../stateManage/useConversation.js';
 import { transformImage } from '../../lib/features.js';
+import server from '../../environment.js';
 
 const style = {
   position: 'absolute',
@@ -53,7 +54,7 @@ export default function ViewFriendRequest({ open, onClose }) {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5002/requests/handleRequestSubmits",
+        `${server}/requests/handleRequestSubmits`,
         {
           senderId: userId,
           value

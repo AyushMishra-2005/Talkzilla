@@ -9,6 +9,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useCallContext } from '../../context/CallContext.jsx';
 import { transformImage } from '../../lib/features.js';
+import server from '../../environment.js';
 
 function Chatuser() {
   const { selectedConversation, openGroupUsers, setOpenGroupUsers, typeOfCall, setTypeOfCall } = useConversation();
@@ -41,7 +42,7 @@ function Chatuser() {
 
     try {
       const { data } = await axios.post(
-        `http://localhost:5002/user/generate-token`,
+        `${server}/user/generate-token`,
         {
           channelName: roomId,
           uid
@@ -99,7 +100,7 @@ function Chatuser() {
 
     try {
       const { data } = await axios.post(
-        `http://localhost:5002/user/generate-token`,
+        `${server}/user/generate-token`,
         {
           channelName: roomId,
           uid

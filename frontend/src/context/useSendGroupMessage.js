@@ -3,6 +3,7 @@ import useConversation from '../stateManage/useConversation'
 import { useState } from 'react'
 import axios from 'axios';
 import { useAuth } from './AuthProvider';
+import server from '../environment.js';
 
 function useSendGroupMessage() {
   const { selectedConversation, groupMessages, setGroupMessages } = useConversation();
@@ -15,7 +16,7 @@ function useSendGroupMessage() {
       const groupId = selectedConversation._id;
       try {
         const response = await axios.post(
-          "http://localhost:5002/groupMessage/sendGroupMessage",
+          `${server}/groupMessage/sendGroupMessage`,
           { message, attachment, groupId },
           { withCredentials: true }
         );

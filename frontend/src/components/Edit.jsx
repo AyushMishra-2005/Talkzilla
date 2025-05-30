@@ -8,6 +8,7 @@ import animationData from '../assets/loading.json'
 import React, { useState } from "react";
 import { Navigate, useNavigate } from 'react-router-dom';
 import { transformImage } from "../lib/features";
+import server from "../environment.js";
 
 
 function Edit() {
@@ -58,7 +59,7 @@ function Edit() {
       if (file) {
         try {
           const { data: cloudData } = await axios.get(
-            "http://localhost:5002/getImage",
+            `${server}/getImage`,
             { withCredentials: true }
           );
 
@@ -91,7 +92,7 @@ function Edit() {
       };
 
       const response = await axios.post(
-        "http://localhost:5002/user/edit",
+        `${server}/user/edit`,
         userInfo,
         { withCredentials: true }
       );

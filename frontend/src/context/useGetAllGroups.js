@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import useConversation from '../stateManage/useConversation.js';
+import server from '../environment.js';
 
 function useGetAllGroups() {
   const {allGroups, setAllGroups} = useConversation();
@@ -10,7 +11,7 @@ function useGetAllGroups() {
     const getGroups = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:5002/group/getGroups", 
+          `${server}/group/getGroups`, 
           {withCredentials: true}
         );
         setAllGroups(response.data.groupDetails);

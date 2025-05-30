@@ -5,6 +5,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie'
 import { useAuth } from '../../context/AuthProvider';
 import toast from 'react-hot-toast';
+import server from '../../environment.js';
 
 
 export default function Right() {
@@ -15,7 +16,7 @@ export default function Right() {
   const handleLoguout = async () => {
     setLoading(true);
     try{
-      const res = await axios.post("http://localhost:5002/user/logout",{}, { withCredentials: true });
+      const res = await axios.post(`${server}/user/logout`,{}, { withCredentials: true });
       localStorage.removeItem("messenger");
       setAuthUser(undefined);
       setLoading(false);

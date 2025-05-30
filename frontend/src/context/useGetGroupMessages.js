@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import useConversation from "../stateManage/useConversation";
+import server from "../environment.js";
 
 function useGetGroupMessages() {
   const { selectedConversation, setGroupMessages } = useConversation();
@@ -19,7 +20,7 @@ function useGetGroupMessages() {
 
       try {
         const res = await axios.post(
-          "http://localhost:5002/groupMessage/getGroupMessage",
+          `${server}/groupMessage/getGroupMessage`,
           {groupId},
           { withCredentials: true }
         );

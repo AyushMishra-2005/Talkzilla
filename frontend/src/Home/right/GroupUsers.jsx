@@ -12,6 +12,7 @@ import {useNavigate} from 'react-router-dom'
 import { useSocketContext } from '../../context/socketContext.jsx';
 import { useAuth } from '../../context/AuthProvider.jsx';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
+import server from '../../environment.js';
 
 const MembersList = () => {
   const [activeMember, setActiveMember] = useState(null);
@@ -25,7 +26,7 @@ const MembersList = () => {
     try{
       const friendId = selectedConversation._id;
       const res = await axios.post(
-        "http://localhost:5002/user/deleteFriend",
+        `${server}/user/deleteFriend`,
         {friendId},
         {withCredentials : true}
       );
@@ -53,7 +54,7 @@ const MembersList = () => {
     try{
       const friendId = selectedConversation._id;
       const res = await axios.post(
-        "http://localhost:5002/user/clearChat",
+        `${server}/user/clearChat`,
         {friendId},
         {withCredentials : true}
       );
@@ -67,7 +68,7 @@ const MembersList = () => {
     try{
       const groupId = selectedConversation._id;
       const res = await axios.post(
-        "http://localhost:5002/group/leaveGroup", 
+        `${server}/group/leaveGroup`, 
         {groupId},
         {withCredentials : true}
       );
@@ -138,7 +139,7 @@ const MembersList = () => {
     }
 
     axios.post(
-      "http://localhost:5002/group/removeGroupMember",
+      `${server}/group/removeGroupMember`,
       {
         groupData,
       },

@@ -12,6 +12,7 @@ import animationData from '../../assets/sending.json'
 import toast from 'react-hot-toast';
 import useConversation from '../../stateManage/useConversation';
 import useSendGroupMessage from '../../context/useSendGroupMessage';
+import server from '../../environment.js';
 
 const style = {
   position: 'absolute',
@@ -66,7 +67,7 @@ export default function FileUploadModal({ open, onClose, onSend }) {
 
     try {
       const res = await axios.post(
-        "http://localhost:5002/upload",
+        `${server}/upload`,
         formData,
         { withCredentials: true }
       );
