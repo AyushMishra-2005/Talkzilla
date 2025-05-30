@@ -4,6 +4,7 @@ import VideoCallUI from './TwoPersonVideoPlayer';
 import { useSocketContext } from '../context/socketContext';
 import useConversation from '../stateManage/useConversation';
 import GroupVideoCallUI from './GroupVideoCall';
+import { useNavigate } from 'react-router-dom';
 
 function VideoRoom({ uid, token, roomId, appId }) {
   const [users, setUsers] = useState([]);
@@ -11,6 +12,7 @@ function VideoRoom({ uid, token, roomId, appId }) {
   const client = useRef(null);
   const { socket } = useSocketContext();
   const { typeOfCall } = useConversation();
+  const navigate = useNavigate();
   
   const handleUserJoined = async (user, mediaType) => {
     await client.current.subscribe(user, mediaType);
@@ -65,12 +67,12 @@ function VideoRoom({ uid, token, roomId, appId }) {
   useEffect(() => {
     const handleCallEnded = () => {
       leaveCall();
-      window.location.reload();
+      navigate('/');
     };
 
     const handleCallRejected = () => {
       leaveCall();
-      window.location.reload();
+      navigate('/');
     };
 
     socket.on('call-ended', handleCallEnded);
@@ -87,7 +89,7 @@ function VideoRoom({ uid, token, roomId, appId }) {
       socket.emit('call-ended');
     }
     leaveCall();
-    window.location.reload();
+    navigate('/');
   };
 
   useEffect(() => {
