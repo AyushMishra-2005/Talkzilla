@@ -12,13 +12,14 @@ import groupMessageRoute from './route/groupMessage.route.js'
 import handleFriendRequest from './route/friendRequest.route.js'
 import upload from "./middleware/multerHandler.js";
 import fs from 'fs'
+import frontend_url from "./envirnoment.js";
 
 dotenv.config();
 const PORT = process.env.PORT || 3000;
 const URI = process.env.MONGODB_URI;
 
 app.use(cors({
-  origin: "*",
+  origin: `${frontend_url}`,
   credentials: true,
 }));
 app.use(express.json({ limit: "48kb" }));
